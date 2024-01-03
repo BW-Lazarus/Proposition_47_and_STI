@@ -133,7 +133,16 @@ gen low_lower = low_avg - 1.96 * low_se
 
 // graph
 	# delimit ;
-twoway (rarea high_avg low_avg year if year>=2000 & year<2018& year~=2009 , sort fcolor(dknavy%50) fintensity(30)	lcolor(white) lwidth(vthin)) || (connected beta_avg year if year>1999 & year<2018,  sort yaxis(1) msymbol(O) msize(tiny) lcolor(dknavy) mcolor(dknavy) lwidth(vthin))  , yline(0, lcolor(gs0)) graphregion(color(white)) bgcolor(white) xline(2010, lcolor(gs0)) legend(label(2 "point estimates") label(1 "95% CI")) xlabel(2000(1)2017, angle(45) labsize(vsmall) nogrid)  ylabel(-3(1.5)3, labsize(vsmall) nogrid)  xtitle("Year", size(small)) title("(a) Average Bounds", size(small)) ytitle("Average Estimated Coefficient" , axis(1) size(small));
+twoway (rarea high_avg low_avg year if year>=2000 & year<2018& year~=2009, ///
+sort fcolor(dknavy%50) fintensity(30) lcolor(white) lwidth(vthin)) || ///
+(connected beta_avg year if year>1999 & year<2018,  sort yaxis(1) msymbol(O) ///
+msize(tiny) lcolor(dknavy) mcolor(dknavy) lwidth(vthin)), ///
+yline(0, lcolor(gs0)) graphregion(color(white)) bgcolor(white)  ///
+xline(2010, lcolor(gs0)) legend(label(2 "point estimates") ///
+label(1 "95% CI")) xlabel(2000(1)2017, angle(45) labsize(vsmall) nogrid) ///
+ylabel(-3(1.5)3, labsize(vsmall) nogrid)  ///
+xtitle("Year", size(small)) title("(a) Average Bounds", size(small)) ///
+ytitle("Average Estimated Coefficient" , axis(1) size(small));
 # delimit cr
 graph save graphs/homicide_leave_one_out_avg, replace
 drop high* low*
