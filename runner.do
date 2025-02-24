@@ -18,8 +18,8 @@ In addition to minimizing mspe, two conditions are applied when choosing models:
 could not drop significantly compared to M's.
 
 This .do file incorporates Python code. Therefore, the user needs to set up PyStata. To increase
-computational efficiency, the worker .do file uses the package cvlasso with sklearn option.
-However, this could lead the Python backend to report a TypeError exception. The cause is that
+computational efficiency, the worker .do file uses the package cvlasso with the option sklearn.
+However, this could lead the Python backend to report a TypeError exception. The cause is that the
 constructors of sklearn's ElasticNet() and Ridge() class expect a Boolean in fit_intercept=sk_cons 
 (line 4557, 4569, 4689 of lassoutils.ado in the lassopack package), but STATA does not have a 
 Boolean data type. Thus, the user needs to cast sk_cons to Boolean type in Python by adding the 
